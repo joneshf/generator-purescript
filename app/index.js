@@ -151,8 +151,8 @@ var PurescriptGenerator = yeoman.generators.Base.extend({
       this.version = props.version;
       this.description = props.description;
       this.license = props.license;
-      this.grunt = props.gruntGulp[0];
-      this.gulp = props.gruntGulp[1];
+      this.grunt = _.contains(props.gruntGulp, 'Grunt');
+      this.gulp = _.contains(props.gruntGulp, 'Gulp');
       this.purescriptDeps = props.purescriptDeps;
       this.bowerDeps = _.compact(props.bowerDeps.split(/\s+/));
       this.modules = _.compact(props.modules.split(/\s+/));
@@ -184,8 +184,12 @@ var PurescriptGenerator = yeoman.generators.Base.extend({
 
   projectfiles: function () {
     this.copy('editorconfig', '.editorconfig');
+    this.copy('gitignore', '.gitignore');
     if (this.grunt) {
       this.copy('Gruntfile.js', 'Gruntfile.js');
+    }
+    if (this.gulp) {
+      this.copy('gulpfile.js', 'gulpfile.js');
     }
   }
 });
