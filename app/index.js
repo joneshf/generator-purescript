@@ -57,6 +57,7 @@ var PurescriptGenerator = yeoman.generators.Base.extend({
       , { name: 'version'
         , message: 'What version would you like to start with?'
         , validate: nonEmptyString('You have to supply a version.')
+        , default: '0.0.1'
         }
       , { name: 'description'
         , message: 'What description would you like?'

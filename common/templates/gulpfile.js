@@ -6,7 +6,10 @@ var gulp       = require('gulp')
 
 var paths = {
     src: 'src/**/*.purs',
-    bowerSrc: 'bower_components/purescript-*/src/**/*.purs',
+    bowerSrc: [
+      'bower_components/purescript-*/src/**/*.purs',
+      'bower_components/purescript-*/src/**/*.purs.hs'
+    ],
     dest: '',
     docsDest: 'README.md'
 };
@@ -19,7 +22,7 @@ gulp.task('compile', function() {
         console.error(e.message);
         pscMake.end();
     });
-    return gulp.src([paths.src, paths.bowerSrc])
+    return gulp.src([paths.src].concat(paths.bowerSrc))
         .pipe(pscMake)
         .pipe(gulp.dest(paths.dest));
 });
