@@ -5,6 +5,7 @@ var yeoman = require('yeoman-generator');
 var yosay = require('yosay');
 var chalk = require('chalk');
 var _ = require('lodash');
+var funcs = require('../common/functions.js');
 
 var nonEmptyString = function (msg) {
   return function (str) {
@@ -156,15 +157,7 @@ var PurescriptGenerator = yeoman.generators.Base.extend({
       this.purescriptDeps = props.purescriptDeps;
       this.bowerDeps = _.compact(props.bowerDeps.split(/\s+/));
       this.modules = _.compact(props.modules.split(/\s+/));
-      this.dirsAndFiles = this.modules.map(function (module) {
-          var split = module.split('.')
-            , file = split.pop()
-            , prefixed = ['src'].concat(split);
-          return { dir: path.join.apply(null, prefixed)
-                 , file: file
-                 , module: module
-                 };
-      });
+      this.dirsAndFiles = this.modules.map(funcs.module2DirFile);
 
       done();
     }.bind(this));
