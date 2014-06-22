@@ -53,11 +53,12 @@ var PurescriptGenerator = yeoman.generators.Base.extend({
       [ { name: 'name'
         , message: 'What would you like to call this project?'
         , validate: nonEmptyString('You have to name the project.')
+        , default: path.basename(process.cwd())
         }
       , { name: 'version'
         , message: 'What version would you like to start with?'
         , validate: nonEmptyString('You have to supply a version.')
-        , default: '0.0.1'
+        , default: '0.0.0'
         }
       , { name: 'description'
         , message: 'What description would you like?'
