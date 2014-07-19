@@ -80,6 +80,7 @@ var PurescriptGenerator = yeoman.generators.Base.extend({
         , message: 'Would you like to use Grunt and/or Gulp?'
         , type: 'checkbox'
         , choices: ['Grunt', 'Gulp']
+        , default: ['Grunt']
         }
       , { name: 'purescriptDeps'
         , message: 'Would you like any of these core modules?'
