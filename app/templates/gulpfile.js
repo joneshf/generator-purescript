@@ -14,10 +14,13 @@ var paths = {
     docsDest: 'README.md'
 };
 
-var options = {};
+var options = {
+    compiler: {},
+    docgen: {}
+};
 
 var compile = function(compiler) {
-    var psc = compiler(options);
+    var psc = compiler(options.compiler);
     psc.on('error', function(e) {
         console.error(e.message);
         psc.end();
@@ -36,8 +39,13 @@ gulp.task('browser', function() {
 });
 
 gulp.task('docs', function() {
+    var docgen = purescript.docgen(options.docgen);
+    docgen.on('error', function(e) {
+        console.error(e.message);
+        docgen.end();
+    });
     return gulp.src(paths.src)
-      .pipe(purescript.docgen())
+      .pipe(docgen)
       .pipe(gulp.dest(paths.docsDest));
 });
 
