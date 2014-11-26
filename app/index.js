@@ -17,8 +17,8 @@ var PurescriptGenerator = yeoman.generators.Base.extend({
   _npmSaveDev: function (deps) {
     this.npmInstall(deps, {saveDev: true});
   },
-  _bowerSaveDev: function (deps) {
-    this.bowerInstall(deps, {saveDev: true});
+  _bowerSave: function (deps) {
+    this.bowerInstall(deps, {save: true});
   },
   init: function () {
     this.pkg = require('../package.json');
@@ -36,7 +36,7 @@ var PurescriptGenerator = yeoman.generators.Base.extend({
         if (this.gulp) {
           this._npmSaveDev(['gulp', 'gulp-purescript']);
         }
-        this._bowerSaveDev(this.purescriptDeps.concat(this.bowerDeps));
+        this._bowerSave(this.purescriptDeps.concat(this.bowerDeps));
       }
     });
   },
