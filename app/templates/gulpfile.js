@@ -34,6 +34,11 @@ gulp.task('make', function() {
     return compile(purescript.pscMake);
 });
 
+gulp.task('dotPsci', function() {
+  gulp.src(paths.bowerSrc)
+    .pipe(purescript.dotPsci());
+});
+
 gulp.task('browser', function() {
     return compile(purescript.psc);
 });
@@ -54,7 +59,7 @@ gulp.task('watch-browser', function() {
 });
 
 gulp.task('watch-make', function() {
-    gulp.watch(paths.src, ['make', 'docs']);
+    gulp.watch(paths.src, ['make', 'dotPsci', 'docs']);
 });
 
-gulp.task('default', ['make', 'docs']);
+gulp.task('default', ['make', 'dotPsci', 'docs']);
