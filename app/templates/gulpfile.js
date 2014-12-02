@@ -35,7 +35,7 @@ gulp.task('make', function() {
 });
 
 gulp.task('dotPsci', function() {
-  gulp.src(paths.bowerSrc)
+  gulp.src([paths.src].concat(paths.bowerSrc))
     .pipe(purescript.dotPsci());
 });
 
