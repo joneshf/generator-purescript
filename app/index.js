@@ -34,7 +34,14 @@ var PurescriptGenerator = yeoman.generators.Base.extend({
                            ]);
         }
         if (this.gulp) {
-          this._npmSaveDev(['gulp', 'gulp-purescript']);
+          this._npmSaveDev([ 'gulp'
+                           , 'gulp-bump'
+                           , 'gulp-filter'
+                           , 'gulp-git'
+                           , 'gulp-purescript'
+                           , 'gulp-tag-version'
+                           , 'run-sequence'
+                           ]);
         }
         this._bowerSave(this.purescriptDeps.concat(this.bowerDeps));
       }
