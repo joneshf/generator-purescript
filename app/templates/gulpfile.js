@@ -22,7 +22,7 @@ var paths = {
 
 var options = {
     compiler: {},
-    docgen: {}
+    pscDocs: {}
 };
 
 var compile = function(compiler) {
@@ -78,13 +78,13 @@ gulp.task('browser', function() {
 });
 
 gulp.task('docs', function() {
-    var docgen = purescript.docgen(options.docgen);
-    docgen.on('error', function(e) {
+    var pscDocs = purescript.pscDocs(options.pscDocs);
+    pscDocs.on('error', function(e) {
         console.error(e.message);
-        docgen.end();
+        pscDocs.end();
     });
     return gulp.src(paths.src)
-      .pipe(docgen)
+      .pipe(pscDocs)
       .pipe(gulp.dest(paths.docsDest));
 });
 
