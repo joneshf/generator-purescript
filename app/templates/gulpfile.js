@@ -69,8 +69,7 @@ gulp.task('bump-tag-patch', function() {
     return runSequence('bump-patch', 'tag');
 });
 
-gulp.task('make', function() {
-    return compile(purescript.pscMake);
+gulp.task('make', function() {return compile(purescript.pscMake);
 });
 
 gulp.task('browser', function() {
@@ -88,12 +87,17 @@ gulp.task('docs', function() {
       .pipe(gulp.dest(paths.docsDest));
 });
 
+gulp.task('dotPsci', function() {
+    gulp.src([paths.src].concat(paths.bowerSrc))
+        .pipe(purescript.dotPsci());
+});
+
 gulp.task('watch-browser', function() {
     gulp.watch(paths.src, ['browser', 'docs']);
 });
 
 gulp.task('watch-make', function() {
-    gulp.watch(paths.src, ['make', 'docs']);
+    gulp.watch(paths.src, ['make', 'docs', 'dotPsci']);
 });
 
-gulp.task('default', ['make', 'docs']);
+gulp.task('default', ['make', 'docs', 'dotPsci']);
